@@ -1,4 +1,4 @@
-package sample.jsp.controller;
+package ru.schoolarlife.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
