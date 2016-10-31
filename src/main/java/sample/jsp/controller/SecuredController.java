@@ -18,4 +18,10 @@ public class SecuredController {
         model.put("time", new Date());
         return "security/login";
     }
+
+    @RequestMapping("/security/register")
+    public String register(Map<String, Object> model) {
+        model.put("time", new Date());
+        return "security/Register";
+    }
 }
