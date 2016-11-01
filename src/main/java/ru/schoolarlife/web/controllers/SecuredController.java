@@ -49,7 +49,7 @@ public class SecuredController {
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/welcome";
+        return "redirect:/main";
     }
 
     @RequestMapping(value = "/security/login", method = RequestMethod.GET)
