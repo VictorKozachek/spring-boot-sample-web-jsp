@@ -8,5 +8,5 @@ import ru.schoolarlife.logic.bo.security.User;
 public interface UserService {
     public void save(User user);
 
-    public User findByUsername(String username);
+    public User findByEmail(String email);
 }
