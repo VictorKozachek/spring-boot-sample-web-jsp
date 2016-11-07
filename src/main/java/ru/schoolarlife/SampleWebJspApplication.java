@@ -17,16 +17,12 @@
 package ru.schoolarlife;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import ru.schoolarlife.logic.model.dao.UserDao;
 import ru.schoolarlife.logic.model.dao.UserDaoImpl;
 
-//@EnableJpaRepositories(basePackageClasses = UserDaoImpl.class)
-//@EnableAutoConfiguration
 @SpringBootApplication
 public class SampleWebJspApplication extends SpringBootServletInitializer {
 
