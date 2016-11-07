@@ -19,10 +19,10 @@ import ru.schoolarlife.logic.bo.security.User;
 public class UserDaoImpl implements UserDao {
 
     @Autowired
-    private SessionFactory _sessionFactory;
+    private SessionFactory sessionFactory;
 
     private Session getSession() {
-        return _sessionFactory.getCurrentSession();
+        return sessionFactory.getCurrentSession();
     }
 
     @Override

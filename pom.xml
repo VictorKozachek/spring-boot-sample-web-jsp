@@ -15,6 +15,7 @@
 	<properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
+		<hibernate.version>4.3.8.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<dependency>

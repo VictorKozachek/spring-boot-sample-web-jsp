@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.model.dao.UserDao;
+import ru.schoolarlife.logic.model.dao.UserDaoImpl;
 
 import java.util.HashSet;
 

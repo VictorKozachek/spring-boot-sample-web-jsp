@@ -26,12 +26,12 @@ public class SecuredController {
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "security/register";
     }
 
     @RequestMapping(value = "/security/register", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
+    //    userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "security/register";
