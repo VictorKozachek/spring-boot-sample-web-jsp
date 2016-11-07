@@ -10,9 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+
+    private Long id;
 
     @NotNull
     @Size(min = 3, max = 80)
@@ -25,24 +24,23 @@ public class User {
     private String password;
     private String passwordConfirm;
 
-    //private Set<Role> roles;
+    private Set<Role> roles;
 
-    public User() { }
-
-    public User(long id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public User(String email, String name) {
-        this.email = email;
+    public void setName(String name) {
         this.name = name;
     }
 
-    public long getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,14 +50,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
@@ -79,7 +69,7 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-  /*  @ManyToMany
+    @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {
         return roles;
@@ -87,5 +77,5 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }*/
+    }
 }

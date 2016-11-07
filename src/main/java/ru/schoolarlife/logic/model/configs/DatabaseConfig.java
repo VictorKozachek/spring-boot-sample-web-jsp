@@ -1,16 +1,7 @@
 package ru.schoolarlife.logic.model.configs;
 
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.Properties;
 
 /**
  * Created by victor on 06.11.16.
@@ -18,6 +9,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class DatabaseConfig {
+   /*
     @Value("${db.driver}")
     private String DB_DRIVER;
 
@@ -53,6 +45,7 @@ public class DatabaseConfig {
         return dataSource;
     }
 
+
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -74,4 +67,5 @@ public class DatabaseConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
+    */
 }

@@ -7,9 +7,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.schoolarlife.logic.bl.security.interfaces.RoleService;
+import ru.schoolarlife.logic.bl.security.interfaces.SecurityService;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bl.security.validation.UserValidator;
+import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.model.dao.repositories.RoleRepository;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * @author val.rudi
@@ -20,7 +29,14 @@ public class SecuredController {
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private SecurityService securityService;
+
+    @Autowired
     private UserValidator userValidator;
+
 
     @RequestMapping(value = "/security/register", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -31,13 +47,22 @@ public class SecuredController {
 
     @RequestMapping(value = "/security/register", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-    //    userValidator.validate(userForm, bindingResult);
+        userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "security/register";
         }
 
+        if(userForm.getRoles() == null || userForm.getRoles().size() <= 0)
+        {
+            Role defaultRole = roleService.findByName("Default");
+            Set<Role> roleSet = new HashSet<>();
+            roleSet.add(defaultRole);
+            userForm.setRoles(roleSet);
+        }
         userService.save(userForm);
+
+        securityService.autologin(userForm.getEmail(), userForm.getPasswordConfirm());
 
         return "redirect:/main";
     }
@@ -53,5 +78,9 @@ public class SecuredController {
         return "security/login";
     }
 
+    @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
+    public String welcome(Model model) {
+        return "main";
+    }
 
 }

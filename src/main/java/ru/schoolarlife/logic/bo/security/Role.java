@@ -31,12 +31,12 @@ public class Role {
         this.name = name;
     }
 
- /*   @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles")
     public Set<User> getUsers() {
         return users;
     }
 
     public void setUsers(Set<User> users) {
         this.users = users;
-    }*/
+    }
 }
