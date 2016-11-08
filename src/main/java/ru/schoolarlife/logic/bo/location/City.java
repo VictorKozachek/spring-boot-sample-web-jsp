@@ -1,10 +1,20 @@
 package ru.schoolarlife.logic.bo.location;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by victor on 01.11.16.
  */
+@Entity
+@Table(name = "city")
 public class City {
-    String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull
+    private String name;
 
     public City() {
     }

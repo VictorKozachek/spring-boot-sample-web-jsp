@@ -6,15 +6,27 @@ import ru.schoolarlife.logic.bo.lifecycle.SchoolClass;
 import ru.schoolarlife.logic.bo.location.Address;
 import ru.schoolarlife.logic.helpers.Gender;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "student")
 public class Student extends Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="student_id")
     private SchoolClass schoolClass;
+
+    @ManyToMany
+    @JoinTable(name = "parent_student", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
     private Set<Parent> parents;
 
     public long getId() {
@@ -25,6 +37,7 @@ public class Student extends Person {
         this.id = id;
     }
 
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -41,6 +54,7 @@ public class Student extends Person {
         this.middleName = middleName;
     }
 
+    @NotNull
     public String getLastName() {
         return lastName;
     }
@@ -73,6 +87,8 @@ public class Student extends Person {
         this.age = age;
     }
 
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id")
     public Address getAddress() {
         return address;
     }

@@ -3,16 +3,32 @@ package ru.schoolarlife.logic.bo.lifecycle;
 import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.person.Teacher;
 
+import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "schoolclass")
 public class SchoolClass {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="TEACHER_ID")
     private Teacher curator;
+
+    @OneToMany(mappedBy="schoolClass")
     private Set<Student> students;
+
+    @ManyToMany
+    @JoinTable(
+            name="class_subject",
+            joinColumns=@JoinColumn(name="class_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="subject_id", referencedColumnName="id"))
     private Set<Subject> subjects;
 
     public SchoolClass() {

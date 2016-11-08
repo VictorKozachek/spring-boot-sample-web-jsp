@@ -3,14 +3,22 @@ package ru.schoolarlife.logic.bo.person;
 import ru.schoolarlife.logic.bo.location.Address;
 import ru.schoolarlife.logic.helpers.Gender;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "parent")
 public class Parent extends Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToMany(mappedBy = "parents")
     private Set<Student> students;
 
     public long getId() {
@@ -29,6 +37,8 @@ public class Parent extends Person {
         this.students = students;
     }
 
+
+    @NotNull
     public String getFirstName() {
         return firstName;
     }
@@ -45,6 +55,7 @@ public class Parent extends Person {
         this.middleName = middleName;
     }
 
+    @NotNull
     public String getLastName() {
         return lastName;
     }
@@ -61,6 +72,7 @@ public class Parent extends Person {
         this.gender = gender;
     }
 
+    @NotNull
     public Date getBirthDate() {
         return birthDate;
     }
@@ -69,6 +81,7 @@ public class Parent extends Person {
         this.birthDate = birthDate;
     }
 
+    @NotNull
     public int getAge() {
         return age;
     }
@@ -77,6 +90,8 @@ public class Parent extends Person {
         this.age = age;
     }
 
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id")
     public Address getAddress() {
         return address;
     }
