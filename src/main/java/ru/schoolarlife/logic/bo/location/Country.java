@@ -16,8 +16,6 @@ public class Country {
     @NotNull
     private String name;
 
-    @OneToOne(fetch=FetchType.LAZY, mappedBy="country")
-    private Address owner;
 
     public Country() {
     }

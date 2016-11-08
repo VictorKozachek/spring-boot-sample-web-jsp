@@ -91,7 +91,7 @@ public class Parent extends Person {
     }
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="address_id")
     public Address getAddress() {
         return address;
     }

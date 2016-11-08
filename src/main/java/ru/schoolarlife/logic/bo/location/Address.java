@@ -17,11 +17,11 @@ public class Address {
     private String zip;
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="country_id")
     private Country country;
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="city_id")
     private City city;
 
     @NotNull

@@ -22,7 +22,7 @@ public class Student extends Person {
     private long id;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="student_id")
+    @JoinColumn(name="class_id")
     private SchoolClass schoolClass;
 
     @ManyToMany
@@ -88,7 +88,7 @@ public class Student extends Person {
     }
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="address_id")
     public Address getAddress() {
         return address;
     }
