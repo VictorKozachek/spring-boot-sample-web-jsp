@@ -2,18 +2,41 @@ package ru.schoolarlife.logic.bo.school;
 
 import ru.schoolarlife.logic.bo.lifecycle.SchoolClass;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "classroom")
 public class ClassRoom {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private int floorNumber;
+
+    @NotNull
     private int seatsNumber;
+
     private boolean hasProjector;
+
     private boolean hasElectronicBoard;
+
     private String cameraLink;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="schoolclass_id")
     private SchoolClass embededSchoolClass;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="building_id")
+    private SchoolBuilding building;
 
     public ClassRoom() {
     }
@@ -91,5 +114,13 @@ public class ClassRoom {
 
     public void setEmbededSchoolClass(SchoolClass embededSchoolClass) {
         this.embededSchoolClass = embededSchoolClass;
+    }
+
+    public SchoolBuilding getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(SchoolBuilding building) {
+        this.building = building;
     }
 }

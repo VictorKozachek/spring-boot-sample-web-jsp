@@ -2,15 +2,28 @@ package ru.schoolarlife.logic.bo.school;
 
 import ru.schoolarlife.logic.bo.person.Teacher;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "schoolbuilding")
 public class School {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
     private String name;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="principal_id")
     private Teacher principal;
+
+    @OneToMany(mappedBy="school")
     private Set<SchoolBuilding> schoolBuildings;
 
     public long getId() {

@@ -18,7 +18,7 @@ public class SchoolClass {
     private String name;
 
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="TEACHER_ID")
+    @JoinColumn(name="curator_id")
     private Teacher curator;
 
     @OneToMany(mappedBy="schoolClass")

@@ -4,17 +4,40 @@ import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.person.Teacher;
 import ru.schoolarlife.logic.bo.schedule.Lesson;
 
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "absences")
 public class Absences {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="subject_id")
     private Subject subject;
+
+    @NotNull
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="student_id")
     private Student student;
+
+    @NotNull
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="teacher_id")
     private Teacher teacher;
+
+    @NotNull
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="lesson_id")
     private Lesson lesson;
+
+    @NotNull
     private String reason;
 
     public Absences() {

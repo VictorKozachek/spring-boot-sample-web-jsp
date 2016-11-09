@@ -1,17 +1,35 @@
 package ru.schoolarlife.logic.bo.schedule;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
  */
+@Entity
+@Table(name = "week")
 public class Week {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int index;
+
+    @NotNull
+    private int weekIndex;
+
+    @NotNull
     private Date startDate;
+
+    @NotNull
     private Date endDate;
+
+    @OneToMany(mappedBy="week")
     private Set<Day> days;
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="schedule_id")
+    private Schedule schedule;
 
     public long getId() {
         return id;
@@ -21,12 +39,12 @@ public class Week {
         this.id = id;
     }
 
-    public int getIndex() {
-        return index;
+    public int getWeekIndex() {
+        return weekIndex;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setWeekIndex(int week_index) {
+        this.weekIndex = week_index;
     }
 
     public Date getStartDate() {
@@ -51,5 +69,13 @@ public class Week {
 
     public void setDays(Set<Day> days) {
         this.days = days;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }
