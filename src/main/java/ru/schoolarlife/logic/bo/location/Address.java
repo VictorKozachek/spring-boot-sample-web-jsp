@@ -26,6 +26,7 @@ public class Address {
 
     @NotNull
     private String addressLine;
+
     private String comment;
 
     public Address() {

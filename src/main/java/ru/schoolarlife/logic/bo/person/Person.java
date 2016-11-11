@@ -13,7 +13,8 @@ import java.util.Date;
  * Created by victor on 01.11.16.
  */
 @SuppressWarnings("PMD")
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

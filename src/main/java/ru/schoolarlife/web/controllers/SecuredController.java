@@ -7,18 +7,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.schoolarlife.logic.bl.location.interfaeces.LocationService;
 import ru.schoolarlife.logic.bl.security.interfaces.RoleService;
 import ru.schoolarlife.logic.bl.security.interfaces.SecurityService;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bl.security.validation.UserValidator;
+import ru.schoolarlife.logic.bl.students.interfaces.StudentService;
+import ru.schoolarlife.logic.bo.location.Address;
+import ru.schoolarlife.logic.bo.location.City;
+import ru.schoolarlife.logic.bo.location.Country;
+import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.helpers.Gender;
 import ru.schoolarlife.logic.model.dao.repositories.RoleRepository;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author val.rudi
@@ -37,10 +41,39 @@ public class SecuredController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private StudentService studentService;
+
+    @Autowired
+    private LocationService locationService;
+
 
     @RequestMapping(value = "/security/register", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
+
+        Student testStudent = studentService.findByFirstName("Василий");
+      /*  testStudent.setBirthDate(new Date(123456748));
+        testStudent.setAge(10);
+        testStudent.setFirstName("Василий");
+        testStudent.setMiddleName("Васильевич");
+        testStudent.setLastName("Пупкин");
+        testStudent.setGender(Gender.MALE);
+        testStudent.setPhone("+79787774411");
+
+
+        City city = new City("Симферополь");
+        city = locationService.saveCity(city);
+
+        Country country = new Country("Российская Федерация");
+        country = locationService.saveCountry(country);
+
+        Address studentAddress = new Address("295000", country, city, "Воровского 12 кв.5", "Test student");
+        studentAddress = locationService.saveAddress(studentAddress);
+
+
+        testStudent.setAddress(studentAddress);
+        studentService.save(testStudent);*/
 
         return "security/register";
     }
