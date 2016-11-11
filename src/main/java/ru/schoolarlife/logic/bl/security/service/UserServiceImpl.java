@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bo.security.User;
-import ru.schoolarlife.logic.model.dao.repositories.UserDao;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserDao;
 
 /**
  * Created by victor on 01.11.16.

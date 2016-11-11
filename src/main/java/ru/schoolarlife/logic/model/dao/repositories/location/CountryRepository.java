@@ -1,4 +1,4 @@
-package ru.schoolarlife.logic.model.dao.repositories;
+package ru.schoolarlife.logic.model.dao.repositories.location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.schoolarlife.logic.bo.location.Country;

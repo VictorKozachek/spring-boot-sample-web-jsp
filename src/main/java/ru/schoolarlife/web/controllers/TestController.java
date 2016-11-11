@@ -3,29 +3,30 @@ package ru.schoolarlife.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.schoolarlife.logic.bl.lifecycle.interfaces.AbsencesService;
+import ru.schoolarlife.logic.bl.lifecycle.interfaces.AssessmentService;
+import ru.schoolarlife.logic.bl.lifecycle.interfaces.SchoolClassService;
+import ru.schoolarlife.logic.bl.lifecycle.interfaces.SubjectService;
 import ru.schoolarlife.logic.bl.location.interfaeces.LocationService;
 import ru.schoolarlife.logic.bl.person.interfaces.ParentService;
+import ru.schoolarlife.logic.bl.person.interfaces.StudentService;
+import ru.schoolarlife.logic.bl.person.interfaces.TeacherService;
 import ru.schoolarlife.logic.bl.security.interfaces.RoleService;
 import ru.schoolarlife.logic.bl.security.interfaces.SecurityService;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bl.security.validation.UserValidator;
-import ru.schoolarlife.logic.bl.person.interfaces.StudentService;
-import ru.schoolarlife.logic.bl.person.interfaces.TeacherService;
 import ru.schoolarlife.logic.bo.person.Student;
-import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
 
-import java.util.*;
+import java.util.Set;
 
 /**
- * @author val.rudi
+ * Created by victor on 11.11.16.
  */
 @Controller
-public class SecuredController {
+public class TestController {
     @Autowired
     private UserService userService;
 
@@ -51,9 +52,24 @@ public class SecuredController {
     private LocationService locationService;
 
 
-    @RequestMapping(value = "/security/register", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+    @Autowired
+    private AbsencesService absencesService;
+
+    @Autowired
+    private AssessmentService assessmentService;
+
+    @Autowired
+    private SchoolClassService schoolClassService;
+
+    @Autowired
+    private SubjectService subjectService;
+
+    private Model model;
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testModels(Model model) {
+        this.model = model;
+        model.addAttribute("message", "Tester");
 
         Set<Student> testStudent = studentService.findAllByFirstName("Василий");
      /*   Student testStudent = new Student();
@@ -77,45 +93,6 @@ public class SecuredController {
         testStudent.setAddress(studentAddress);
         studentService.save(testStudent);*/
 
-        return "security/register";
+        return "test";
     }
-
-    @RequestMapping(value = "/security/register", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
-
-        if (bindingResult.hasErrors()) {
-            return "security/register";
-        }
-
-        if(userForm.getRoles() == null || userForm.getRoles().size() <= 0)
-        {
-            Role defaultRole = roleService.findByName("Default");
-            Set<Role> roleSet = new HashSet<>();
-            roleSet.add(defaultRole);
-            userForm.setRoles(roleSet);
-        }
-        userService.save(userForm);
-
-        securityService.autologin(userForm.getEmail(), userForm.getPasswordConfirm());
-
-        return "redirect:/main";
-    }
-
-    @RequestMapping(value = "/security/login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
-
-        return "security/login";
-    }
-
-    @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
-    public String welcome(Model model) {
-        return "main";
-    }
-
 }

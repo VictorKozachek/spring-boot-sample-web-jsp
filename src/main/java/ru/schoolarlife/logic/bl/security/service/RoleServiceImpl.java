@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.schoolarlife.logic.bl.security.interfaces.RoleService;
 import ru.schoolarlife.logic.bo.security.Role;
-import ru.schoolarlife.logic.model.dao.repositories.RoleRepository;
-import ru.schoolarlife.logic.model.dao.repositories.UserDao;
+import ru.schoolarlife.logic.model.dao.repositories.security.RoleRepository;
 
 /**
  * Created by victor on 07.11.16.

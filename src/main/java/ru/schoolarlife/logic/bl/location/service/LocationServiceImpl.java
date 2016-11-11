@@ -6,9 +6,9 @@ import ru.schoolarlife.logic.bl.location.interfaeces.LocationService;
 import ru.schoolarlife.logic.bo.location.Address;
 import ru.schoolarlife.logic.bo.location.City;
 import ru.schoolarlife.logic.bo.location.Country;
-import ru.schoolarlife.logic.model.dao.repositories.AddressRepository;
-import ru.schoolarlife.logic.model.dao.repositories.CityRepository;
-import ru.schoolarlife.logic.model.dao.repositories.CountryRepository;
+import ru.schoolarlife.logic.model.dao.repositories.location.AddressRepository;
+import ru.schoolarlife.logic.model.dao.repositories.location.CityRepository;
+import ru.schoolarlife.logic.model.dao.repositories.location.CountryRepository;
 
 /**
  * Created by victor on 11.11.16.

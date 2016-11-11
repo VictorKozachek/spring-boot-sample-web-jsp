@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
-import ru.schoolarlife.logic.model.dao.repositories.UserDao;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserDao;
 
 import java.util.HashSet;
 import java.util.Set;
