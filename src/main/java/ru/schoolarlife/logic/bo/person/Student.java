@@ -17,8 +17,22 @@ public class Student extends Person {
     @JoinColumn(name="class_id")
     private SchoolClass schoolClass;
 
-    @ManyToMany
-    @JoinTable(name = "parent_student", joinColumns = @JoinColumn(name = "parent_id"), inverseJoinColumns = @JoinColumn(name = "student_id"))
+    @ManyToMany(mappedBy="students")
     private Set<Parent> parents;
 
+    public SchoolClass getSchoolClass() {
+        return schoolClass;
+    }
+
+    public void setSchoolClass(SchoolClass schoolClass) {
+        this.schoolClass = schoolClass;
+    }
+
+    public Set<Parent> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
+    }
 }

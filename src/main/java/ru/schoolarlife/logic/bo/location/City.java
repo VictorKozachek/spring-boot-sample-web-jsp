@@ -16,6 +16,9 @@ public class City {
     @NotNull
     private String name;
 
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="city")
+    private Address owner;
+
     public City() {
     }
 
@@ -29,5 +32,21 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Address getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Address owner) {
+        this.owner = owner;
     }
 }

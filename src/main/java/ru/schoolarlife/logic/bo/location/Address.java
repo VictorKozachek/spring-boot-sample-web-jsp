@@ -1,5 +1,7 @@
 package ru.schoolarlife.logic.bo.location;
 
+import ru.schoolarlife.logic.bo.person.Person;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -28,6 +30,9 @@ public class Address {
     private String addressLine;
 
     private String comment;
+
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="address")
+    private Person owner;
 
     public Address() {
     }
@@ -78,5 +83,21 @@ public class Address {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }

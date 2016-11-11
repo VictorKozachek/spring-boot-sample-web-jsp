@@ -1,8 +1,6 @@
 package ru.schoolarlife.logic.bo.person;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -13,7 +11,8 @@ import java.util.Set;
 @Table(name = "parent")
 public class Parent extends Person {
 
-    @ManyToMany(mappedBy = "parents")
+    @ManyToMany
+    @JoinTable(name = "parent_student", joinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
     private Set<Student> students;
 
     public Set<Student> getStudents() {

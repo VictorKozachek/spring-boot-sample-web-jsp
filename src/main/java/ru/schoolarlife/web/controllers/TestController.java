@@ -17,9 +17,16 @@ import ru.schoolarlife.logic.bl.security.interfaces.RoleService;
 import ru.schoolarlife.logic.bl.security.interfaces.SecurityService;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bl.security.validation.UserValidator;
+import ru.schoolarlife.logic.bo.location.Address;
+import ru.schoolarlife.logic.bo.location.City;
+import ru.schoolarlife.logic.bo.location.Country;
+import ru.schoolarlife.logic.bo.person.Parent;
 import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.helpers.Gender;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -71,27 +78,53 @@ public class TestController {
         this.model = model;
         model.addAttribute("message", "Tester");
 
-        Set<Student> testStudent = studentService.findAllByFirstName("Василий");
-     /*   Student testStudent = new Student();
+
+ /*       Student testStudent = new Student();
         testStudent.setBirthDate(new Date(123556748));
         testStudent.setAge(10);
-        testStudent.setFirstName("Василий");
-        testStudent.setMiddleName("Алибабаевич");
-        testStudent.setLastName("Кыргызстанов");
+        testStudent.setFirstName("Сергей");
+        testStudent.setMiddleName("Петрович");
+        testStudent.setLastName("Сергеев");
         testStudent.setGender(Gender.MALE);
-        testStudent.setPhone("+79787774412");
+        testStudent.setPhone("+79787774433");
 
 
-        City city = locationService.findCityByName("Симферополь");
+        City city = new City("Евпатория");
+        city = locationService.saveCity(city);
+        //City city = locationService.findCityByName("Симферополь");
 
-        Country country = locationService.findCountryByName("Российская Федерация");
+        //Country country = locationService.findCountryByName("Российская Федерация");
+        Country country = new Country("Российская Федерация");
+        country = locationService.saveCountry(country);
 
-        Address studentAddress = new Address("295000", country, city, "Киевская 37 кв.10", "Test student 2");
+        Address studentAddress = new Address("295000", country, city, "Севастопольская 30 кв.15", "Test student 3");
         studentAddress = locationService.saveAddress(studentAddress);
 
-
         testStudent.setAddress(studentAddress);
-        studentService.save(testStudent);*/
+        studentService.save(testStudent);
+
+        Set<Student> students = studentService.findAllByFirstName("Сергей");
+        if (students != null && students.size() == 1)
+        {
+            Student student = (Student) students.toArray()[0];
+            Parent parent = new Parent();
+            parent.setBirthDate(new Date(123556748));
+            parent.setAge(10);
+            parent.setFirstName("Петр");
+            parent.setMiddleName("Иванович");
+            parent.setLastName("Сергеев");
+            parent.setGender(Gender.MALE);
+            parent.setPhone("+79787774433");
+
+
+            parent.setAddress(student.getAddress());
+            parent.setStudents(new HashSet<>());
+            parent.getStudents().add(student);
+            parentService.save(parent);
+
+        }*/
+
+    Set<Parent> parents = parentService.findAllByFirstName("Петр");
 
         return "test";
     }
