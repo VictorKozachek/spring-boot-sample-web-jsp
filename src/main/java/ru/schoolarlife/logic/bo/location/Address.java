@@ -1,14 +1,38 @@
 package ru.schoolarlife.logic.bo.location;
 
+import ru.schoolarlife.logic.bo.person.Person;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by victor on 01.11.16.
  */
+@Entity
+@Table(name = "address")
 public class Address {
-    String zip;
-    Country country;
-    City city;
-    String addressLine;
-    String comment;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull
+    private String zip;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="country_id")
+    private Country country;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="city_id")
+    private City city;
+
+    @NotNull
+    private String addressLine;
+
+    private String comment;
+
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="address")
+    private Person owner;
 
     public Address() {
     }
@@ -59,5 +83,21 @@ public class Address {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }

@@ -5,9 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bo.security.User;
-import ru.schoolarlife.logic.model.dao.UserDao;
-
-import java.util.HashSet;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserDao;
 
 /**
  * Created by victor on 01.11.16.
@@ -31,6 +29,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByEmail(String email) {
 
-        return userRepository.getByEmail(email);
+        return userRepository.findByEmail(email);
     }
 }

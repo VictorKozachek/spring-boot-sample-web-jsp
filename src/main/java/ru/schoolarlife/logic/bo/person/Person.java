@@ -3,16 +3,78 @@ package ru.schoolarlife.logic.bo.person;
 import ru.schoolarlife.logic.bo.location.Address;
 import ru.schoolarlife.logic.helpers.Gender;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+
+
 
 /**
  * Created by victor on 01.11.16.
  */
+@SuppressWarnings("PMD")
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person {
-    Gender gender;
-    Date birthDate;
-    Integer age;
-    Address address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull
+    private String firstName;
+
+    private String middleName;
+
+    @NotNull
+    private String lastName;
+
+    private Gender gender;
+
+    @NotNull
+    private Date birthDate;
+
+    @NotNull
+    private int age;
+
+    @NotNull
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="address_id")
+    private Address address;
+
+
+    private String phone;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public Gender getGender() {
         return gender;
@@ -22,11 +84,19 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    public Integer getAge() {
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -38,11 +108,11 @@ public abstract class Person {
         this.address = address;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
