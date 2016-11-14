@@ -24,6 +24,7 @@ import ru.schoolarlife.logic.bo.person.Parent;
 import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.helpers.Gender;
+import ru.schoolarlife.mail.interfaces.MailComposer;
 import ru.schoolarlife.mail.interfaces.MailSender;
 
 import java.util.Date;
@@ -75,6 +76,9 @@ public class TestController {
     @Autowired
     private MailSender mailSender;
 
+    @Autowired
+    private MailComposer mailComposer;
+
     private Model model;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -82,7 +86,7 @@ public class TestController {
         this.model = model;
         model.addAttribute("message", "Tester");
 
-        mailSender.sendMailTo("test@yandex.ru", "<a href=\"http://google.com\" >Click here</a>");
+
 
  /*       Student testStudent = new Student();
         testStudent.setBirthDate(new Date(123556748));
@@ -129,7 +133,13 @@ public class TestController {
 
         }*/
 
-    Set<Parent> parents = parentService.findAllByFirstName("Петр");
+        User user = new User();
+        user.setName("Вася Пупкин");
+
+        String mailtext = mailComposer.getComfirmationMailForUser(user, "http://google.com");
+        mailSender.sendMailTo("user@yandex.ru", mailtext);
+
+        Set<Parent> parents = parentService.findAllByFirstName("Петр");
 
         return "test";
     }

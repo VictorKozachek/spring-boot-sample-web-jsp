@@ -20,25 +20,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.context.support.ResourceBundleMessageSource;
 
 //@EnableJpaRepositories(basePackageClasses = UserDao.class)
 //@EnableAutoConfiguration(exclude={HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class})
 
 @SpringBootApplication
 public class SampleWebJspApplication extends SpringBootServletInitializer {
-
-
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource source = new ResourceBundleMessageSource();
-		source.setBasename("messages_en_US");
-		source.setUseCodeAsDefaultMessage(true);
-		return source;
-	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
