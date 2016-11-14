@@ -24,6 +24,7 @@ import ru.schoolarlife.logic.bo.person.Parent;
 import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.helpers.Gender;
+import ru.schoolarlife.mail.interfaces.MailSender;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -71,6 +72,9 @@ public class TestController {
     @Autowired
     private SubjectService subjectService;
 
+    @Autowired
+    private MailSender mailSender;
+
     private Model model;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
@@ -78,6 +82,7 @@ public class TestController {
         this.model = model;
         model.addAttribute("message", "Tester");
 
+        mailSender.sendMailTo("test@yandex.ru", "<a href=\"http://google.com\" >Click here</a>");
 
  /*       Student testStudent = new Student();
         testStudent.setBirthDate(new Date(123556748));
