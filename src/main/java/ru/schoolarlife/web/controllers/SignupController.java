@@ -83,7 +83,7 @@ public class SignupController {
 
 
 
-    @RequestMapping(value = "/security/register", method = RequestMethod.GET)
+    //@RequestMapping(value = "/security/register", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
@@ -112,7 +112,7 @@ public class SignupController {
         return "security/register";
     }
 
-    @RequestMapping(value = "/security/register", method = RequestMethod.POST)
+    //@RequestMapping(value = "/security/register", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
