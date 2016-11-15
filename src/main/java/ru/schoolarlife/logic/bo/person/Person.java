@@ -1,6 +1,7 @@
 package ru.schoolarlife.logic.bo.person;
 
 import ru.schoolarlife.logic.bo.location.Address;
+import ru.schoolarlife.logic.bo.security.User;
 import ru.schoolarlife.logic.helpers.Gender;
 
 import javax.persistence.*;
@@ -19,6 +20,11 @@ public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @NotNull
     private String firstName;
@@ -41,8 +47,10 @@ public abstract class Person {
     @JoinColumn(name="address_id")
     private Address address;
 
-
     private String phone;
+
+    public Person() {
+    }
 
     public long getId() {
         return id;
@@ -50,6 +58,14 @@ public abstract class Person {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFirstName() {
