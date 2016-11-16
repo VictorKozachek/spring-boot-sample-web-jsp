@@ -4,6 +4,7 @@ import ru.schoolarlife.logic.bo.lifecycle.SchoolClass;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by victor on 08.11.16.
@@ -28,7 +29,8 @@ public class ClassRoom {
 
     private boolean hasElectronicBoard;
 
-    private String cameraLink;
+    @OneToMany(mappedBy="classRoom")
+    private Set<Camera> cameras;
 
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="schoolclass_id")
@@ -41,14 +43,14 @@ public class ClassRoom {
     public ClassRoom() {
     }
 
-    public ClassRoom(long id, String name, int floorNumber, int seatsNumber, boolean hasProjector, boolean hasElectronicBoard, String cameraLink, SchoolClass embededSchoolClass) {
+    public ClassRoom(long id, String name, int floorNumber, int seatsNumber, boolean hasProjector, boolean hasElectronicBoard, Set<Camera> cameraLink, SchoolClass embededSchoolClass) {
         this.id = id;
         this.name = name;
         this.floorNumber = floorNumber;
         this.seatsNumber = seatsNumber;
         this.hasProjector = hasProjector;
         this.hasElectronicBoard = hasElectronicBoard;
-        this.cameraLink = cameraLink;
+        this.cameras = cameraLink;
         this.embededSchoolClass = embededSchoolClass;
     }
 
@@ -100,12 +102,12 @@ public class ClassRoom {
         this.hasElectronicBoard = hasElectronicBoard;
     }
 
-    public String getCameraLink() {
-        return cameraLink;
+    public Set<Camera> getCameras() {
+        return cameras;
     }
 
-    public void setCameraLink(String cameraLink) {
-        this.cameraLink = cameraLink;
+    public void setCameras(Set<Camera> cameras) {
+        this.cameras = cameras;
     }
 
     public SchoolClass getEmbededSchoolClass() {
