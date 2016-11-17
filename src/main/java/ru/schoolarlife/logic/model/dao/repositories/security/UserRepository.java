@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * Created by victor on 06.11.16.
  */
-public interface UserDao  extends JpaRepository<User, Long> {
-    User findByEmail(String username);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByEmail(String email);
 }

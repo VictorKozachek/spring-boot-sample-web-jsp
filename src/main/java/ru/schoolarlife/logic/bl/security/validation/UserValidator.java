@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import ru.schoolarlife.logic.bl.security.interfaces.UserService;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
 
 /**
  * Created by victor on 01.11.16.
@@ -15,7 +16,7 @@ import ru.schoolarlife.logic.bo.security.User;
 public class UserValidator implements Validator {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -33,7 +34,7 @@ public class UserValidator implements Validator {
         if (user.getEmail().length() < 6 || user.getEmail().length() > 32) {
             errors.rejectValue("email", "Size.userForm.email");
         }
-        if (userService.findByEmail(user.getEmail()) != null) {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
             errors.rejectValue("email", "Duplicate.userForm.email");
         }
 

@@ -30,15 +30,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/security/register", "/test").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/resources/**", "/security/register").permitAll()
+                .antMatchers("/test").permitAll()
+                .antMatchers("/main").access("hasRole('ROLE_PARENT')").anyRequest().permitAll()
                 .and()
-                .formLogin()
-                .loginPage("/security/login")
-                .permitAll()
+                .formLogin().loginPage("/security/login").usernameParameter("email").passwordParameter("password")
                 .and()
-                .logout()
-                .permitAll();
+                .logout().logoutSuccessUrl("/security/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/security/403")
+                .and()
+                .csrf();
     }
 
  /*   @Autowired

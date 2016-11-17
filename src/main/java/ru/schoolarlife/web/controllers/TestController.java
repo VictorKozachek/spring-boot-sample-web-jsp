@@ -36,14 +36,6 @@ import java.util.Set;
  */
 @Controller
 public class TestController {
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserValidator userValidator;

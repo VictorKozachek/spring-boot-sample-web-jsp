@@ -2,6 +2,7 @@ package ru.schoolarlife.logic.bo.security;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,11 +29,24 @@ public class User {
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id", referencedColumnName="ID"),
+                            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName="ID"))
+    private Set<Role> roles = new HashSet<Role>();;
 
     private boolean active = false;
+
+    public User() {
+    }
+
+    public User(User user) {
+        setName(user.getName());
+        setActive(user.isActive());
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        setPasswordConfirm(user.getPasswordConfirm());
+        setId(user.getId());
+    }
 
     public String getName() {
         return name;
