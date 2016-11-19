@@ -30,17 +30,15 @@
 
 <div class="container">
 
-    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+    <form method="POST" action="${contextPath}/security/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
-            <spring:bind path="email">
-                <input name="email" type="text" class="form-control" placeholder="E-Mail" autofocus="true"/>
-            </spring:bind>
-            <spring:bind path="password">
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
-            </spring:bind>
+
+            <input id="email" name="email" type="text" class="form-control" placeholder="E-Mail" autofocus="true"/>
+            <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
+
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
@@ -48,7 +46,7 @@
             <h4 class="text-center"><a href="${contextPath}/security/register">Create an account</a></h4>
         </div>
 
-    </form:form>
+    </form>
 
 </div>
 <!-- /container -->

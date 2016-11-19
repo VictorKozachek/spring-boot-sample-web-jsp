@@ -1,5 +1,6 @@
 package ru.schoolarlife.web.auth;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +19,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-   /* @Autowired
-    private UserDetailsService userDetailsService;*/
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    /*private final DataSource dataSource;
+
+    @Autowired
+    public WebSecurityConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }*/
+
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -27,11 +37,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService);
+
+//        auth.jdbcAuthentication().dataSource(dataSource)
+//                .usersByUsernameQuery("select email, password, active from user where email=?")
+//                .authoritiesByUsernameQuery("select name from role where id in (select role_id from user_role where user_id in (select id from user where email=?))");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        /*http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/security/register").permitAll()
-                .antMatchers("/test").permitAll()
+                .antMatchers("/resources*//**", "/security/register", "/test").permitAll()
                 .antMatchers("/main").access("hasRole('ROLE_PARENT')").anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/security/login").usernameParameter("email").passwordParameter("password")
@@ -40,10 +59,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedPage("/security/403")
                 .and()
-                .csrf();
+                .csrf();*/
+        http
+                .authorizeRequests()
+                .antMatchers("/resources/**", "/security/register", "/test").permitAll()
+                .antMatchers("/main").access("hasRole('PARENT')").anyRequest().permitAll()
+                .antMatchers("/").access("hasRole('ROLE_PARENT')").anyRequest().permitAll()
+                .and()
+                .formLogin().loginPage("/security/login").usernameParameter("email").passwordParameter("password")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/security/login?logout")
+                .permitAll();
     }
 
- /*   @Autowired
+   /* @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }*/

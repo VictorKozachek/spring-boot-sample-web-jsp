@@ -128,8 +128,8 @@ public class TestController {
         User user = new User();
         user.setName("Вася Пупкин");
 
-        String mailtext = mailComposer.getComfirmationMailForUser(user, "http://google.com");
-        mailSender.sendMailTo("user@yandex.ru", mailtext);
+       // String mailtext = mailComposer.getComfirmationMailForUser(user, "http://google.com");
+       // mailSender.sendMailTo("user@yandex.ru", mailtext);
 
         Set<Parent> parents = parentService.findAllByFirstName("Петр");
 
