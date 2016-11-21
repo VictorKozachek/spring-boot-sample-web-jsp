@@ -36,6 +36,9 @@ public class User {
 
     private boolean active = false;
 
+    @OneToOne(fetch=FetchType.LAZY, mappedBy="user")
+    private UserActivation owner;
+
     public User() {
     }
 

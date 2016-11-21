@@ -63,6 +63,10 @@
             </div>
         </spring:bind>
 
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <span>${error}</span>
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 

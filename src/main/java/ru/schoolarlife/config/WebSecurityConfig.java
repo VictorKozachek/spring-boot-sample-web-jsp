@@ -62,7 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf();*/
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**", "/security/register", "/test").permitAll()
+                .antMatchers("/resources/**",
+                        "/security/register",
+                        "/security/activation",
+                        "/security/registerconfirm",
+                        "/test").permitAll()
                 .antMatchers("/main").access("hasRole('PARENT')").anyRequest().permitAll()
                 .antMatchers("/").access("hasRole('ROLE_PARENT')").anyRequest().permitAll()
                 .and()

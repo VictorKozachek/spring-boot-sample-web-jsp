@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.schoolarlife.logic.bl.location.interfaeces.LocationService;
@@ -23,9 +24,16 @@ import ru.schoolarlife.logic.bl.person.interfaces.TeacherService;
 import ru.schoolarlife.logic.bo.person.Student;
 import ru.schoolarlife.logic.bo.security.Role;
 import ru.schoolarlife.logic.bo.security.User;
+import ru.schoolarlife.logic.bo.security.UserActivation;
+import ru.schoolarlife.logic.helpers.ActivationCodeEncoder;
 import ru.schoolarlife.logic.model.dao.repositories.security.RoleRepository;
+import ru.schoolarlife.logic.model.dao.repositories.security.UserActivationRepository;
 import ru.schoolarlife.logic.model.dao.repositories.security.UserRepository;
+import ru.schoolarlife.mail.interfaces.MailComposer;
+import ru.schoolarlife.mail.interfaces.MailSender;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -39,62 +47,30 @@ public class SecuredController {
     @Autowired
     private RoleRepository roleRepository;
 
-    //@Autowired
-    //private SecurityService securityService;
-
     @Autowired
     private UserValidator userValidator;
 
     @Autowired
-    private StudentService studentService;
+    UserActivationRepository userActivationRepository;
 
     @Autowired
-    private ParentService parentService;
+    ActivationCodeEncoder activationCodeEncoder;
 
     @Autowired
-    private TeacherService teacherService;
+    private MailSender mailSender;
 
     @Autowired
-    private LocationService locationService;
-
-    @Autowired()
-    UserDetailsService userDetailsService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
+    private MailComposer mailComposer;
 
     @RequestMapping(value = "/security/register", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        Set<Student> testStudent = studentService.findAllByFirstName("Василий");
-     /*   Student testStudent = new Student();
-        testStudent.setBirthDate(new Date(123556748));
-        testStudent.setAge(10);
-        testStudent.setFirstName("Василий");
-        testStudent.setMiddleName("Алибабаевич");
-        testStudent.setLastName("Кыргызстанов");
-        testStudent.setGender(Gender.MALE);
-        testStudent.setPhone("+79787774412");
-
-
-        City city = locationService.findCityByName("Симферополь");
-
-        Country country = locationService.findCountryByName("Российская Федерация");
-
-        Address studentAddress = new Address("295000", country, city, "Киевская 37 кв.10", "Test student 2");
-        studentAddress = locationService.saveAddress(studentAddress);
-
-
-        testStudent.setAddress(studentAddress);
-        studentService.save(testStudent);*/
-
         return "security/register";
     }
 
     @RequestMapping(value = "/security/register", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) throws NoSuchAlgorithmException {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -116,10 +92,50 @@ public class SecuredController {
         }
         userRepository.save(userForm);
 
+        if(userForm.getId() <= 0)
+        {
+            bindingResult.rejectValue("save", "save.failed");
+            return "security/register";
+        }
         //securityService.autologin(userForm.getEmail(), userForm.getPasswordConfirm());
 
+        String md = activationCodeEncoder.randomActivationString();
+
+        UserActivation userActivation = new UserActivation(userForm, md);
+        userActivationRepository.save(userActivation);
+
+        String activationUrl = "http://localhost:8080/security/activation/" + md;
+
+        String activationMailMessage = mailComposer.getComfirmationMailForUser(userForm, activationUrl);
+        mailSender.sendMailTo(userForm.getEmail(), "Activation link", activationMailMessage);
+
+        return "redirect:/security/registerconfirm";
+    }
+
+    @RequestMapping(value = "/security/registerconfirm", method = RequestMethod.GET)
+    public String registrationconfirmation(Model model)
+    {
+        return "security/registerconfirm";
+    }
+
+    @RequestMapping(value = "/security/activation/{activationCode}", method = RequestMethod.GET)
+    public String activation(@PathVariable("activationCode") String id)
+    {
+        UserActivation userActivation =  userActivationRepository.findByActivationCode(id);
+        if (userActivation != null)
+        {
+            if(userActivation.getUser() != null)
+            {
+                User user = userActivation.getUser();
+                user.setActive(true);
+                userRepository.save(user);
+
+                userActivationRepository.delete(userActivation);
+            }
+        }
         return "redirect:/main";
     }
+
 
     @RequestMapping(value = "/security/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
@@ -133,19 +149,6 @@ public class SecuredController {
         return "security/login";
     }
 
-    @RequestMapping(value = "/security/login", method = RequestMethod.POST)
-    public String login(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(userForm.getEmail());
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, userForm.getPassword(), userDetails.getAuthorities());
-
-        authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-
-        if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            //logger.debug(String.format("Auto login %s successfully!", username));
-        }
-        return "redirect:/main";
-    }
 
     @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
     public String welcome(Model model) {

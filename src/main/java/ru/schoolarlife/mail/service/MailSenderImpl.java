@@ -23,7 +23,7 @@ public class MailSenderImpl implements MailSender {
     private String from;
 
     @Override
-    public void sendMailTo(String to, String message) {
+    public void sendMailTo(String to, String subject, String message) {
         MimeMessage mail = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mail, true);
@@ -31,7 +31,7 @@ public class MailSenderImpl implements MailSender {
             //TODO: change to config reader
             helper.setReplyTo(from);
             helper.setFrom(from);
-            helper.setSubject("Lorem ipsum");
+            helper.setSubject(subject);
             helper.setText(message, true);
         } catch (MessagingException e) {
             e.printStackTrace();
