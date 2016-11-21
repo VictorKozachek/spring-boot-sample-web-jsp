@@ -63,7 +63,7 @@ public class SecuredController {
     private MailComposer mailComposer;
 
     @RequestMapping(value = "/security/register", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public String registration(Model model) throws NoSuchAlgorithmException {
         model.addAttribute("userForm", new User());
 
         return "security/register";
@@ -102,7 +102,7 @@ public class SecuredController {
         }
         //securityService.autologin(userForm.getEmail(), userForm.getPasswordConfirm());
 
-        String md = activationCodeEncoder.randomActivationString();
+        String md = activationCodeEncoder.md5ActivationString(userForm.getEmail());
 
         UserActivation userActivation = new UserActivation(userForm, md);
         userActivationRepository.save(userActivation);

@@ -19,7 +19,26 @@ public class ActivationCodeEncoder {
         return salt;
     }
 
-    public String md5ActivationString() throws NoSuchAlgorithmException {
-        return MessageDigest.getInstance("MD5").toString();
+    public String md5ActivationString(String inputString) throws NoSuchAlgorithmException {
+        String algorithm = "";
+        if (inputString == null) {
+            return "null";
+        }
+
+        algorithm = System.getProperty("MD5.algorithm", "MD5");
+
+        MessageDigest md = null;
+        md = MessageDigest.getInstance(algorithm);
+
+        byte buffer[] = inputString.getBytes();
+
+        for (int count = 0; count < inputString.length(); count++) {
+            md.update(buffer, 0, count);
+        }
+
+        byte bDigest[] = md.digest();
+        BigInteger bi = new BigInteger(bDigest);
+
+        return (bi.abs().toString(16));
     }
 }
