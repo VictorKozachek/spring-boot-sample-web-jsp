@@ -71,6 +71,9 @@ public class SecuredController {
 
     @RequestMapping(value = "/security/register", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) throws NoSuchAlgorithmException {
+
+
+
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -94,7 +97,7 @@ public class SecuredController {
 
         if(userForm.getId() <= 0)
         {
-            bindingResult.rejectValue("save", "save.failed");
+            model.addAttribute("savefailed", "Failed to save new user");
             return "security/register";
         }
         //securityService.autologin(userForm.getEmail(), userForm.getPasswordConfirm());

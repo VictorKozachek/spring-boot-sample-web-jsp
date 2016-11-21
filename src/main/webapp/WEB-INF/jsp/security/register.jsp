@@ -63,14 +63,18 @@
             </div>
         </spring:bind>
 
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <span>${error}</span>
-        </div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
 </div>
+
+<c:if test="${savefailed != null}">
+    <div class="form-signin-error">
+        <h2 class="has-error">${savefailed}</h2>
+    </div>
+</c:if>
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
