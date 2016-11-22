@@ -28,6 +28,8 @@ public abstract class Person {
     @NotNull
     private String lastName;
 
+    private String logoImage;
+
     private Gender gender;
 
     @NotNull
@@ -114,5 +116,13 @@ public abstract class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getLogoImage() {
+        return logoImage;
+    }
+
+    public void setLogoImage(String logoImage) {
+        this.logoImage = logoImage;
     }
 }
