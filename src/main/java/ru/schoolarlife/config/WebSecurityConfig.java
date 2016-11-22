@@ -68,6 +68,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/security/registerconfirm",
                         "/",
                         "/main",
+                        "/person/addprofile",
+                        "/uploadFile",
+                        "/ajaxtest",
+                        "/ajax",
                         "/test").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')").anyRequest().permitAll()
                 .and()
