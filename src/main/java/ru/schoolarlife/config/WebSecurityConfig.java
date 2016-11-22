@@ -66,9 +66,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/security/register",
                         "/security/activation",
                         "/security/registerconfirm",
+                        "/",
+                        "/main",
                         "/test").permitAll()
-                .antMatchers("/main").access("hasRole('PARENT')").anyRequest().permitAll()
-                .antMatchers("/").access("hasRole('ROLE_PARENT')").anyRequest().permitAll()
+                .antMatchers("/admin").access("hasRole('ADMIN')").anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/security/login").usernameParameter("email").passwordParameter("password")
                 .permitAll()

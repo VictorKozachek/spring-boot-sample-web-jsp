@@ -153,9 +153,9 @@ public class SecuredController {
     }
 
 
-    @RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
+    /*@RequestMapping(value = {"/", "/main"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         return "main";
-    }
+    }*/
 
 }

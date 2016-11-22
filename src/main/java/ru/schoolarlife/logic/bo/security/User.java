@@ -42,6 +42,10 @@ public class User {
     public User() {
     }
 
+    public User(String name) {
+        this.name = name;
+    }
+
     public User(User user) {
         setName(user.getName());
         setActive(user.isActive());

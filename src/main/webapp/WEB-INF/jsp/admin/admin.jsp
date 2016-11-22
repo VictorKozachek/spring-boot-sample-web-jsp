@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Gentellela Alela! | </title>
+    <title>Панель администрирования | </title>
 
     <!-- Bootstrap -->
     <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -58,9 +58,10 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-home"></i> Школы <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="/hello">Hello</a></li>
+                                    <li><a href="/main">Список школ</a></li>
+                                    <li><a href="/main">Добавить школу</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>

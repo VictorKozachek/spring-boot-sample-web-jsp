@@ -1,9 +1,89 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>main page</title>
+    <link th:th:href="@{css/style.css}" href="/css/style.css" rel="stylesheet" />
+    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- NProgress -->
+    <link th:href="@{/vendors/nprogress/nprogress.css}" href="/vendors/nprogress/nprogress.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link th:href="@{/build/css/custom.min.css}" href="/build/css/custom.min.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <div class="container center">
+        <div class="logo left">
+            <img src="images/yandex_logo.png">
+        </div>
+        <div class="buttons right">
+            <a href="../САЙТ/sign_in/index_enter.html" class="logIn">Вход</a>
+            <a href="../САЙТ/registration/index_reg.html" class="registration">Регистрация</a>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="container center">
+        <ul class="libMenu">
+            <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i>Расписание</a></li><li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i>Уроки</a></li><li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>Книги</a></li><li><a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i>Видео</a></li>
+        </ul>
+    </div>
+</section>
+<section>
+    <div class="container center content">
+        <div class="ad left ib">
+            <a href="#" class="adBlock">
+                <img src="images/ad1.jpg">
+                <span class="adTitle">Здесь могла быть ваша реклама!</span>
+                <span class="site">shkola.ru</span>
+                <hr>
+                <span class="adInfo">Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама!</span>
+            </a>
+            <a href="#" class="adBlock">
+                <img src="images/ad2.jpg">
+                <span class="adTitle">Здесь могла быть ваша реклама!</span>
+                <span class="site">shkola.ru</span>
+                <hr>
+                <span class="adInfo">Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама!</span>
+            </a>
+        </div>
+        <div class="news ib right">
+            <div class="newsBlock">
+                <h1><a href="#">Заголовок темы</a></h1>
+                <p><a href="#">На сегодняшний день, jQuery - это самая популярная JavaScirpt библиотека, решающая кучу проблем. Мы можем без особого труда манипулировать контентом - заменять, вставлять, удалять, создавать анимацию и т.д.</a></p>
+                <p><a href="#">В этом уроке, мы рассмотрим каким образом мы можем вставлять новые элементы на страницу с помощью метода jQuery Append.</a></p>
+            </div>
+            <div class="newsBlock">
+                <h1><a href="#">Заголовок темы</a></h1>
+                <p><a href="#">На сегодняшний день, jQuery - это самая популярная JavaScirpt библиотека, решающая кучу проблем. Мы можем без особого труда манипулировать контентом - заменять, вставлять, удалять, создавать анимацию и т.д.</a></p>
+                <p><a href="#">В этом уроке, мы рассмотрим каким образом мы можем вставлять новые элементы на страницу с помощью метода jQuery Append.</a></p>
+            </div>
+            <div class="newsBlock">
+                <h1><a href="#">Заголовок темы</a></h1>
+                <p><a href="#">На сегодняшний день, jQuery - это самая популярная JavaScirpt библиотека, решающая кучу проблем. Мы можем без особого труда манипулировать контентом - заменять, вставлять, удалять, создавать анимацию и т.д.</a></p>
+                <p><a href="#">В этом уроке, мы рассмотрим каким образом мы можем вставлять новые элементы на страницу с помощью метода jQuery Append.</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</body>
+</html>
+<%--
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -13,7 +93,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create an account</title>
+    <title>Главная страница</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -31,7 +111,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Welcome &lt;%&ndash;${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>&ndash;%&gt;</h2>
 
     </c:if>
 
@@ -40,4 +120,4 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html>--%>
