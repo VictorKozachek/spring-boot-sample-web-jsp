@@ -9,26 +9,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>main page</title>
-    <link th:th:href="@{css/style.css}" href="/css/style.css" rel="stylesheet" />
-    <link th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}" href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
     <!-- Font Awesome -->
-    <link th:href="@{/vendors/font-awesome/css/font-awesome.min.css}" href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-    <!-- NProgress -->
-    <link th:href="@{/vendors/nprogress/nprogress.css}" href="/vendors/nprogress/nprogress.css" rel="stylesheet"/>
-
-    <!-- Custom Theme Style -->
-    <link th:href="@{/build/css/custom.min.css}" href="/build/css/custom.min.css" rel="stylesheet"/>
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Neucha" rel="stylesheet">
 </head>
 <body>
 <header>
     <div class="container center">
         <div class="logo left">
-            <img src="images/yandex_logo.png">
+            <img src="/resources/images/yandex_logo.png">
         </div>
         <div class="buttons right">
-            <a href="../САЙТ/sign_in/index_enter.html" class="logIn">Вход</a>
-            <a href="../САЙТ/registration/index_reg.html" class="registration">Регистрация</a>
+            <a href="/security/login" class="logIn">Вход</a>
+            <a href="/security/register" class="registration">Регистрация</a>
         </div>
     </div>
 </header>
@@ -43,14 +38,14 @@
     <div class="container center content">
         <div class="ad left ib">
             <a href="#" class="adBlock">
-                <img src="images/ad1.jpg">
+                <img src="/resources/images/ad1.jpg">
                 <span class="adTitle">Здесь могла быть ваша реклама!</span>
                 <span class="site">shkola.ru</span>
                 <hr>
                 <span class="adInfo">Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама! Здесь могла быть ваша реклама!</span>
             </a>
             <a href="#" class="adBlock">
-                <img src="images/ad2.jpg">
+                <img src="/resources/images/ad2.jpg">
                 <span class="adTitle">Здесь могла быть ваша реклама!</span>
                 <span class="site">shkola.ru</span>
                 <hr>
