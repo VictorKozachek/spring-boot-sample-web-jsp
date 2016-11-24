@@ -24,6 +24,7 @@
     <!--[if lt IE 9]>
 <!--   http://localhost:8080/addprofile/0  -->
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="/resources/js/form2js.js"></script>
 
 
     <script type="text/javascript">
@@ -38,19 +39,33 @@
          * Upload the file sending it via Ajax at the Spring Boot server.
          */
         function uploadFileOnServer() {
+            var entityJson = form2js("upload-file-form",null,false); // js library to get json from form
+            var entityJsonStr = JSON.stringify(entityJson);
+            alert(entityJsonStr);
+            var formData = new FormData();
+            formData.append("data", new Blob([entityJsonStr], {
+                type : "application/json"  // ** specify that this is JSON**
+            }));
+
+            $.each($("#upload-file-form").find("input[type='file']"), function(i, tag) {
+                $.each($(tag)[0].files, function(i, file) {
+                    formData.append(tag.name, file);
+                });
+            });
+
             $.ajax({
-                url: "/uploadFile",
+                url: "uploadFile",
                 type: "POST",
-                data: new FormData($("#upload-file-form")[0]),
-                enctype: 'multipart/form-data',
+                data: formData,
+                //enctype: 'multipart/form-data',
                 processData: false,
                 contentType: false,
                 cache: false,
-                success: function () {
+                success: function (response) {
                     // Handle upload success
                     $("#upload-file-message").text("File succesfully uploaded");
                 },
-                error: function () {
+                error: function (xhr,status,err) {
                     // Handle upload error
                     $("#upload-file-message").text(
                             "File not uploaded (perhaps it's too much big)");

@@ -72,6 +72,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/uploadFile",
                         "/ajaxtest",
                         "/ajax",
+                        "/jqtest",
+                        "/file-upload",
+                        "/upload",
+                        "/upfile",
                         "/test").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')").anyRequest().permitAll()
                 .and()
