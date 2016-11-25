@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page pageEncoding="UTF-8" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -28,22 +29,27 @@
 
 <body>
 
-<div class="container">
-
+<div class="center">
+    <h2 class="form-heading">ВХОД</h2>
     <form method="POST" action="${contextPath}/security/login" class="form-signin">
-        <h2 class="form-heading">Log in</h2>
+
 
         <div class="form-group ${error != null ? 'has-error' : ''}">
             <span>${message}</span>
 
-            <input id="email" name="email" type="text" class="form-control" placeholder="E-Mail" autofocus="true"/>
-            <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
+            <input id="email" name="email" type="text" class="form-control" placeholder="E-Mail"/>
+            <input id="password" name="password" type="password" class="form-control" placeholder="Пароль"/>
 
             <span>${error}</span>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-            <h4 class="text-center"><a href="${contextPath}/security/register">Create an account</a></h4>
+            <button class="btn btn-lg btn-primary btn-block signin" type="submit">Войти</button>
+            <h5 class="lost-password text-center"><a href="#">Забыли пароль?</a></h5>
+            <div class="buttons">
+                <a href="${contextPath}/security/register" class="text-center">Регистрация</a>
+                <a href="${contextPath}/security/register" class="text-center">На главную</a>
+            </div>
+
         </div>
 
     </form>

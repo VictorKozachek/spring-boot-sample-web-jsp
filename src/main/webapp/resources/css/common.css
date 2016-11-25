@@ -1,13 +1,105 @@
 body {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #eee;
+    padding: 0;
+    margin: 0;
+    background: url("../images/desk.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
+@font-face {
+    font-family: "NeuchaRegular";
+    src: url("../fonts/NeuchaRegular/NeuchaRegular.eot");
+    src: url("../fonts/NeuchaRegular/NeuchaRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/NeuchaRegular/NeuchaRegular.woff") format("woff"),
+    url("../fonts/NeuchaRegular/NeuchaRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+.center {
+    top: 50%; /* Отступ в процентах от верхнего края окна */
+    left: 50%; /* Отступ в процентах от левого края окна */
+    width: 350px; /* Ширина блока */
+    height: 350px; /* Высота блока */
+    position: absolute; /* Абсолютное позиционирование блока */
+    margin-top: -175px; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
+    margin-left: -175px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
+}
+
+h2.form-heading{
+    /*font-family: "Trebuchet MS" sans-serif;*/
+    font-family: 'NeuchaRegular';
+    letter-spacing: 4px;
+    background-color: #DB531E;
+    opacity: .95;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: white;
+    max-width: 350px;
     margin: 0 auto;
+    border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+    -webkit-border-radius: 6px 6px 0px 0px;
+}
+
+.buttons a {
+    font-family: 'NeuchaRegular';
+    letter-spacing: 1px;
+    font-size: 15px;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    background-color: #29B052;
+    padding: 0 20px;
+    color: white;
+    border-radius: 4px;
+    transition: .3s;
+    margin-top: 10px;
+}
+.buttons a:nth-child(even){
+    float: right;
+    background-color: #D4B749;
+}
+a:hover{
+    text-decoration: none;
+}
+.buttons a:hover{
+    color: white;
+    background-color: #07D02A;
+}
+.buttons a:hover:nth-child(even){
+    background-color: #FFCA00;
+}
+
+h5.lost-password a{
+    color: grey;
+    font-weight: 300;
+    font-family: 'NeuchaRegular';
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: .2s;
+}
+h5.lost-password a:hover{
+    color: rgba(0,0,0, 0.3);
+}
+
+button.signin {
+    font-family: 'NeuchaRegular';
+    letter-spacing: 1px;
+    font-size: 19px;
+    transition: .3s;
+}
+.form-signin {
+    max-width: 350px;
+    padding: 10px 20px 15px ;
+    margin: 0 auto;
+    background-color: rgba(255,255,255, 0.9);
+    border-radius: 0px 0px 6px 6px;
+    -moz-border-radius: 0px 0px 6px 6px;
+    -webkit-border-radius: 0px 0px 6px 6px;
 }
 
 .form-signin-error {
@@ -33,6 +125,7 @@ body {
     box-sizing: border-box;
     padding: 10px;
     font-size: 16px;
+    border-radius: 4px;
 }
 
 .form-signin .form-control:focus {
@@ -40,15 +133,54 @@ body {
 }
 
 .form-signin input {
-    margin-top: 10px;
+    margin-top: 15px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
 .form-signin button {
-    margin-top: 10px;
+    margin: 20px 0;
 }
 
 .has-error {
     color: red
 }
+
+/*placeholder*/
+/*placeholder*/
+::-webkit-input-placeholder {
+    color: #888;
+    font-family: 'NeuchaRegular';
+    text-transform: uppercase;
+    font-weight: 50;
+    letter-spacing: 2px;
+}
+::-moz-placeholder {
+    color: #888;
+    font-family: 'NeuchaRegular';
+    text-transform: uppercase;
+    font-weight: 50;
+    letter-spacing: 2px;
+}/* Firefox 19+ */
+:-moz-placeholder {
+    color: #888;
+    font-family: 'NeuchaRegular';
+    text-transform: uppercase;
+    font-weight: 50;
+    letter-spacing: 2px;
+}/* Firefox 18- */
+:-ms-input-placeholder {
+    color: #888;
+    font-family: 'NeuchaRegular';
+    text-transform: uppercase;
+    font-weight: 50;
+    letter-spacing: 2px;
+}
+input::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
+input::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
+input:-moz-placeholder                 {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
+input:-ms-input-placeholder            {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
+input:focus::-webkit-input-placeholder {text-indent: 500px; transition: text-indent 0.4s ease-in-out;}
+input:focus::-moz-placeholder          {text-indent: 500px; transition: text-indent 0.4s ease-in-out;}
+input:focus:-moz-placeholder           {text-indent: 500px; transition: text-indent 0.4s ease-in-out;}
+input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-indent 0.4s ease-in-out;}

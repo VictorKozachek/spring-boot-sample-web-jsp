@@ -35,7 +35,7 @@
         <spring:bind path="name">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="name" class="form-control" placeholder="Name"
-                            autofocus="true"></form:input>
+                            ></form:input>
                 <form:errors path="name"></form:errors>
             </div>
         </spring:bind>
@@ -43,7 +43,7 @@
         <spring:bind path="email">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="email" class="form-control" placeholder="Email"
-                            autofocus="true"></form:input>
+                            ></form:input>
                 <form:errors path="email"></form:errors>
             </div>
         </spring:bind>
