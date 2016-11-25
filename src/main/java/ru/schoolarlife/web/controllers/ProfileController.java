@@ -83,7 +83,7 @@ public class ProfileController {
             // Get the filename and build the local file path (be sure that the
             // application have write permissions on such directory)
             String filename = uploadfile.getOriginalFilename();
-            String directory = "/var/netgloo_blog/uploads";
+            String directory = "/home/victor/Pictures/1";
             String filepath = Paths.get(directory, filename).toString();
 
             // Save the file locally

@@ -39,9 +39,9 @@
          * Upload the file sending it via Ajax at the Spring Boot server.
          */
         function uploadFileOnServer() {
-            var entityJson = form2js("upload-file-form",null,false); // js library to get json from form
+            /*var entityJson = form2js("upload-file-form",null,false); // js library to get json from form
             var entityJsonStr = JSON.stringify(entityJson);
-            alert(entityJsonStr);
+            //alert(entityJsonStr);
             var formData = new FormData();
             formData.append("data", new Blob([entityJsonStr], {
                 type : "application/json"  // ** specify that this is JSON**
@@ -51,13 +51,32 @@
                 $.each($(tag)[0].files, function(i, file) {
                     formData.append(tag.name, file);
                 });
-            });
+            });*/
 
             $.ajax({
-                url: "uploadFile",
+                url: "/uploadFile?${_csrf.parameterName}=${_csrf.token}",
+                type: "POST",
+                data: new FormData($("#upload-file-form")[0]),
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function () {
+                    // Handle upload success
+                    $("#upload-file-message").text("File succesfully uploaded");
+                },
+                error: function () {
+                    // Handle upload error
+                    $("#upload-file-message").text(
+                            "File not uploaded (perhaps it's too much big)");
+                }
+            });
+
+            /*$.ajax({
+                url: "uploadFile?${_csrf.parameterName}=${_csrf.token}",
                 type: "POST",
                 data: formData,
-                //enctype: 'multipart/form-data',
+                enctype: 'multipart/form-data',
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -70,7 +89,7 @@
                     $("#upload-file-message").text(
                             "File not uploaded (perhaps it's too much big)");
                 }
-            });
+            });*/
         } // function uploadFile
     </script>
 
@@ -95,13 +114,13 @@
 
 </div>
 
-<form id="upload-file-form" class="form-signin">
+<!--<form id="upload-file-form" class="form-signin">
     <h2 class="form-signin-heading">Ваши персональные данные</h2>
     <label for="upload-file-input">Выберите вашу фотографию:</label>
     <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
-</form>
+</form>-->
 
-<%--
+
 <div class="container">
 
     <form id="upload-file-form" class="form-signin">
@@ -111,7 +130,7 @@
     </form>
 
     <form:form method="POST" modelAttribute="userProfile" class="form-signin">
-        &lt;%&ndash;<h2 class="form-signin-heading">Ваши персональные данные</h2>&ndash;%&gt;
+        <!--<h2 class="form-signin-heading">Ваши персональные данные</h2>-->
         <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="firstName" class="form-control" placeholder="Имя"
@@ -152,6 +171,6 @@
 
 
 
---%>
+
 </body>
 </html>

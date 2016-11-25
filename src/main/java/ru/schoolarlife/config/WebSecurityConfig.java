@@ -76,6 +76,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/file-upload",
                         "/upload",
                         "/upfile",
+                        "/uploadjsp",
+                        "/uploadfjsp",
                         "/test").permitAll()
                 .antMatchers("/admin").access("hasRole('ADMIN')").anyRequest().permitAll()
                 .and()

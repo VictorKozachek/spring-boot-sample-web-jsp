@@ -16,7 +16,7 @@ import javax.servlet.MultipartConfigElement;
 @ComponentScan(basePackages = "ru.schoolarlife")
 public class AppConfig {
 
-    @Bean
+ /*   @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize("1028KB");
@@ -30,7 +30,7 @@ public class AppConfig {
         multipartResolver.setMaxUploadSize(1000000);
         return multipartResolver;
     }
-
+*/
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
