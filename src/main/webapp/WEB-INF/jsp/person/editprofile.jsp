@@ -31,6 +31,10 @@
 
         // bind the on-change event for the input element (triggered when a file
         // is chosen)
+      /*  function chooseFile() {
+            $("input[id='upload-file-input']").click();
+        }*/
+
         $(document).ready(function() {
             $("#upload-file-input").on("change", uploadFileOnServer);
         });
@@ -39,20 +43,11 @@
          * Upload the file sending it via Ajax at the Spring Boot server.
          */
         function uploadFileOnServer() {
-            /*var entityJson = form2js("upload-file-form",null,false); // js library to get json from form
-            var entityJsonStr = JSON.stringify(entityJson);
-            //alert(entityJsonStr);
-            var formData = new FormData();
-            formData.append("data", new Blob([entityJsonStr], {
-                type : "application/json"  // ** specify that this is JSON**
-            }));
+           // alert("Hello");
 
-            $.each($("#upload-file-form").find("input[type='file']"), function(i, tag) {
-                $.each($(tag)[0].files, function(i, file) {
-                    formData.append(tag.name, file);
-                });
-            });*/
-
+            /*var formData = form2js('upload-file-form', null, false);
+            var entityJsonStr = JSON.stringify(formData);
+            alert(entityJsonStr);*/
             $.ajax({
                 url: "/uploadFile?${_csrf.parameterName}=${_csrf.token}",
                 type: "POST",
@@ -61,8 +56,9 @@
                 processData: false,
                 contentType: false,
                 cache: false,
-                success: function () {
+                success: function (response) {
                     // Handle upload success
+                    //alert(response);
                     $("#upload-file-message").text("File succesfully uploaded");
                 },
                 error: function () {
@@ -72,36 +68,7 @@
                 }
             });
 
-            /*$.ajax({
-                url: "uploadFile?${_csrf.parameterName}=${_csrf.token}",
-                type: "POST",
-                data: formData,
-                enctype: 'multipart/form-data',
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (response) {
-                    // Handle upload success
-                    $("#upload-file-message").text("File succesfully uploaded");
-                },
-                error: function (xhr,status,err) {
-                    // Handle upload error
-                    $("#upload-file-message").text(
-                            "File not uploaded (perhaps it's too much big)");
-                }
-            });*/
         } // function uploadFile
-    </script>
-
-    <script type="text/javascript">
-        function crunchifyAjax() {
-            $.ajax({
-                url : '/ajaxtest',
-                success : function(data) {
-                    $('#result').html(data);
-                }
-            });
-        }
     </script>
 
 </head>
@@ -120,16 +87,19 @@
     <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
 </form>-->
 
+<form:form id="upload-file-form" class="form-signin">
+    <h2 class="form-signin-heading">Ваши персональные данные</h2>
+    <label class="form-signin-heading" for="upload-file-input">Выберите вашу фотографию:</label>
+
+    <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+
+    <%--<input type="image" src="/resources/images/user.png" onclick="chooseFile();" />--%>
+</form:form>
 
 <div class="container">
 
-    <form id="upload-file-form" class="form-signin">
-        <h2 class="form-signin-heading">Ваши персональные данные</h2>
-        <label for="upload-file-input">Выберите вашу фотографию:</label>
-        <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
-    </form>
 
-    <form:form method="POST" modelAttribute="userProfile" class="form-signin">
+    <form:form id="profileForm" name="profile" method="POST" modelAttribute="userProfile" class="form-signin" action="/addprofile">
         <!--<h2 class="form-signin-heading">Ваши персональные данные</h2>-->
         <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
