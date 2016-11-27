@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create an account</title>
+    <title>Регистрация</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
@@ -38,22 +38,6 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="name" class="form-control input-registration" placeholder="Имя"
                             ></form:input>
-                <form:errors path="name"></form:errors>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control input-registration" placeholder="Фамилия"
-                ></form:input>
-                <form:errors path="name"></form:errors>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="name" class="form-control input-registration" placeholder="Отчество"
-                ></form:input>
                 <form:errors path="name"></form:errors>
             </div>
         </spring:bind>
@@ -81,6 +65,7 @@
             </div>
         </spring:bind>
 
+        <div class="g-recaptcha" data-sitekey="key"></div>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
     </form:form>
@@ -96,5 +81,6 @@
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

@@ -31,10 +31,10 @@ body {
     top: 50%; /* Отступ в процентах от верхнего края окна */
     left: 50%; /* Отступ в процентах от левого края окна */
     width: 600px; /* Ширина блока */
-    height: 600px; /* Высота блока */
+    height: 500px; /* Высота блока */
     position: absolute; /* Абсолютное позиционирование блока */
-    margin-top: -300px; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
-    margin-left: -300px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
+    margin-top: -250px; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
+    margin-left: -250px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
 }
 
 h2.form-heading{
@@ -100,6 +100,9 @@ button.signin {
     letter-spacing: 1px;
     font-size: 19px;
     transition: .3s;
+}
+.registration button {
+    transition: 0.3s;
 }
 .form-signin {
     max-width: 350px;
@@ -191,6 +194,18 @@ button.signin {
     font-weight: 50;
     letter-spacing: 2px;
 }
+
+/*================ReCaptcha==================*/
+/*.g-recaptcha{
+    transform: scale(1.3);
+    transform-origin: 0 0;
+    margin: auto;
+}*/
+.g-recaptcha{
+    width: 300px;
+    margin: 0 auto;
+}
+
 input::-webkit-input-placeholder       {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
 input::-moz-placeholder                {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
 input:-moz-placeholder                 {text-indent: 0px;   transition: text-indent 0.4s ease-in-out;}
@@ -211,6 +226,10 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
         margin-left: -175px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
         max-width: 350px;
     }
+    .g-recaptcha{
+        transform: scale(0.9);
+        transform-origin: 0 0;
+    }
 }
 @media screen and (max-width: 680px) {
     .registration{
@@ -222,6 +241,10 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
         margin-top: -250px; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
         margin-left: -250px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
         max-width: 500px;
+    }
+    .g-recaptcha{
+        transform: scale(0.9);
+        transform-origin: 0 0;
     }
 }
 @media screen and (max-width: 525px) {
@@ -235,6 +258,23 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
         margin-left: -200px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
         max-width: 400px;
     }
+    .g-recaptcha{
+        transform: scale(0.99);
+        transform-origin: 0 0;
+    }
+}
+@media all and (orientation:landscape) {
+    .registration{
+        position: inherit;
+        margin: 50px auto;
+        top: 0;
+        bottom: 0;
+        height: 500px;
+    }
+    body{
+        height: 500px;
+        margin-bottom: 50px;
+    }
 }
 @media screen and (max-width: 420px) {
     .registration{
@@ -246,6 +286,10 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
         margin-top: -175px; /* Отрицательный отступ от верхнего края страницы, должен равняться половине высоты блока со знаком минус */
         margin-left: -175px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
         max-width: 350px;
+    }
+    .g-recaptcha{
+        transform: scale(0.83);
+        transform-origin: 0 0;
     }
 }
 @media screen and (max-width: 324px) {
@@ -259,4 +303,12 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
         margin-left: -140px; /* Отрицательный отступ от левого края страницы, должен равняться половине высоты блока со знаком минус */
         max-width: 280px;
     }
+    .g-recaptcha{
+        transform: scale(0.6);
+        transform-origin: 0 0;
+    }
+    .form-signin button {
+         margin-top: 15px;
+    }
 }
+
