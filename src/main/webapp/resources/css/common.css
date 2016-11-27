@@ -10,10 +10,10 @@ body {
 
 @font-face {
     font-family: "NeuchaRegular";
-    src: url("../fonts/NeuchaRegular/NeuchaRegular.eot");
-    src: url("../fonts/NeuchaRegular/NeuchaRegular.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/NeuchaRegular/NeuchaRegular.woff") format("woff"),
-    url("../fonts/NeuchaRegular/NeuchaRegular.ttf") format("truetype");
+    src: url("../css/fonts/NeuchaRegular/NeuchaRegular.eot");
+    src: url("../css/fonts/NeuchaRegular/NeuchaRegular.eot?#iefix")format("embedded-opentype"),
+    url("../css/fonts/NeuchaRegular/NeuchaRegular.woff") format("woff"),
+    url("../css/fonts/NeuchaRegular/NeuchaRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
@@ -103,6 +103,8 @@ button.signin {
 }
 .registration button {
     transition: 0.3s;
+    font-family: 'NeuchaRegular';
+    letter-spacing: 1px;
 }
 .form-signin {
     max-width: 350px;
