@@ -6,6 +6,7 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    font-family: "NeuchaRegular";
 }
 
 @font-face {
@@ -314,3 +315,45 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
     }
 }
 
+/*=======AVATAR SELECT==========*/
+#avatar-upload{
+   /* width: 350px;
+    height: 200px;
+    margin: 100px auto 0px;
+    background-color: rgba(255,255,255, 0.9);
+    padding: 20px;*/
+    border-radius: 0px;
+    margin-top: 100px;
+}
+label {
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    width: 150px;
+}
+img{
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 150px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+#avatar{
+    display: none;
+}
+.text{
+   /* margin-top: 25px;*/
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: "NeuchaRegular";
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+#save-button{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.container{
+    margin-bottom: 100px;
+}
