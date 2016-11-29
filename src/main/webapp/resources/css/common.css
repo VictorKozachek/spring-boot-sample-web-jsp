@@ -316,14 +316,14 @@ input:focus:-ms-input-placeholder      {text-indent: 500px; transition: text-ind
 }
 
 /*=======AVATAR SELECT==========*/
-#avatar-upload{
+#upload-file-form{
    /* width: 350px;
     height: 200px;
     margin: 100px auto 0px;
     background-color: rgba(255,255,255, 0.9);
     padding: 20px;*/
-    border-radius: 0px;
-    margin-top: 100px;
+    border-radius: 6px 6px 0 0;
+    margin-top: 60px;
 }
 label {
     cursor: pointer;
@@ -338,7 +338,7 @@ img{
     margin: 0 auto;
     object-fit: cover;
 }
-#avatar{
+#upload-file-input{
     display: none;
 }
 .text{
