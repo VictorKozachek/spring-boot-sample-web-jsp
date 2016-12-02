@@ -74,6 +74,14 @@
             </div>
         </spring:bind>
 
+        <spring:bind path="lastName">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="lastName" class="form-control" placeholder="Фамилия"
+                ></form:input>
+                <form:errors path="lastName"></form:errors>
+            </div>
+        </spring:bind>
+
         <spring:bind path="middleName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input type="text" path="middleName" class="form-control" placeholder="Отчество"
@@ -82,13 +90,6 @@
             </div>
         </spring:bind>
 
-        <spring:bind path="lastName">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="lastName" class="form-control" placeholder="Фамилия"
-                            ></form:input>
-                <form:errors path="lastName"></form:errors>
-            </div>
-        </spring:bind>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="save-button">Сохранить</button>
     </form:form>

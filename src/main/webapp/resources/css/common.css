@@ -6,10 +6,10 @@ body {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    font-family: "NeuchaRegular";
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
 
-@font-face {
+/*@font-face {
     font-family: "NeuchaRegular";
     src: url("../css/fonts/NeuchaRegular/NeuchaRegular.eot");
     src: url("../css/fonts/NeuchaRegular/NeuchaRegular.eot?#iefix")format("embedded-opentype"),
@@ -17,7 +17,7 @@ body {
     url("../css/fonts/NeuchaRegular/NeuchaRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 
 .center {
     top: 50%; /* Отступ в процентах от верхнего края окна */
@@ -40,7 +40,6 @@ body {
 
 h2.form-heading{
     /*font-family: "Trebuchet MS" sans-serif;*/
-    font-family: 'NeuchaRegular';
     letter-spacing: 4px;
     background-color: #DB531E;
     opacity: .95;
@@ -56,7 +55,6 @@ h2.form-heading{
 }
 
 .buttons a {
-    font-family: 'NeuchaRegular';
     letter-spacing: 1px;
     font-size: 15px;
     display: inline-block;
@@ -87,7 +85,6 @@ a:hover{
 h5.lost-password a{
     color: grey;
     font-weight: 300;
-    font-family: 'NeuchaRegular';
     font-size: 16px;
     letter-spacing: 1px;
     transition: .2s;
@@ -97,14 +94,12 @@ h5.lost-password a:hover{
 }
 
 button.signin {
-    font-family: 'NeuchaRegular';
     letter-spacing: 1px;
     font-size: 19px;
     transition: .3s;
 }
 .registration button {
     transition: 0.3s;
-    font-family: 'NeuchaRegular';
     letter-spacing: 1px;
 }
 .form-signin {
@@ -171,28 +166,24 @@ button.signin {
 /*placeholder*/
 ::-webkit-input-placeholder {
     color: #888;
-    font-family: 'NeuchaRegular';
     text-transform: uppercase;
     font-weight: 50;
     letter-spacing: 2px;
 }
 ::-moz-placeholder {
     color: #888;
-    font-family: 'NeuchaRegular';
     text-transform: uppercase;
     font-weight: 50;
     letter-spacing: 2px;
 }/* Firefox 19+ */
 :-moz-placeholder {
     color: #888;
-    font-family: 'NeuchaRegular';
     text-transform: uppercase;
     font-weight: 50;
     letter-spacing: 2px;
 }/* Firefox 18- */
 :-ms-input-placeholder {
     color: #888;
-    font-family: 'NeuchaRegular';
     text-transform: uppercase;
     font-weight: 50;
     letter-spacing: 2px;
@@ -345,7 +336,6 @@ img{
    /* margin-top: 25px;*/
     text-align: center;
     letter-spacing: 1px;
-    font-family: "NeuchaRegular";
     font-size: 16px;
     margin-bottom: 15px;
 }
