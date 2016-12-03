@@ -90,6 +90,15 @@
             </div>
         </spring:bind>
 
+        <label for="sex">Пол</label>
+        <div class="radio">
+            <input id="male" type="radio" name="gender" value="male">
+            <label class="gender male" for="male">Мужской</label>
+            <input id="female" type="radio" name="gender" value="female">
+            <label class="gender female" for="female">Женский</label>
+        </div>
+
+        <input id="age" type="date" min="1920-01-01" max="2000-01-01" placeholder="Дата рождения">
 
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="save-button">Сохранить</button>
     </form:form>
